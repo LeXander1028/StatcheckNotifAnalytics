@@ -1,0 +1,16 @@
+/* Add this CSS to remove unnecessary gaps */
+body,
+.container-fluid,
+.row,
+.col {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure the header spans the entire width */
+header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
