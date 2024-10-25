@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>StatCheck</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <link rel="stylesheet" href="/public/css/home.css" />
+    <!-- Boxicons CDN Link -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- sidebar -->
+    <div class="sidebar">
+      <div class="logo-details">
+        <i class="bx bxs-bar-chart-alt-2 icon"></i>
+        <div class="logo_name">StatCheck</div>
+        <span class="tooltip">Expand</span>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <!-- sidebar content -->
+      <ul class="nav-list">
+        <!-- home -->
+        <li>
+          <a href="#" id="active_page">
+            <i class="bx bxs-home"></i>
+            <span class="links_name">Home</span>
+          </a>
+          <span class="tooltip">Home</span>
+        </li>
+        <!-- notifications -->
+        <li>
+          <a href="#">
+            <i class="bx bxs-bell"></i>
+            <span class="links_name">Notifications</span>
+          </a>
+          <span class="tooltip">Notifications</span>
+        </li>
+        <!-- reservation -->
+        <li class="nav-item">
+          <a href="#" class="reservation-btn">
+            <i class="bx bxs-calendar-plus"></i>
+            <span class="links_name">Reservation</span>
+            <i class="bx bx-chevron-down arrow"></i>
+          </a>
+          <span class="tooltip">Reservation</span>
+          <!-- reservation sub-menu -->
+          <ul class="sub-menu">
+            <!-- Library sub-menu -->
+            <li>
+              <a href="#">
+                <i class="bx bxs-book"></i>
+                <span class="links_name">Library</span>
+              </a>
+            </li>
+            <!-- parking sub-menu -->
+            <li>
+              <a href="#">
+                <i class="bx bxs-parking"></i>
+                <span class="links_name">Parking</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="profile">
+          <div class="profile-details">
+            <img
+              src="/public/images/placeholder_user_icon.png"
+              alt="profileImg" />
+            <div class="name_job">
+              <div class="name">username</div>
+            </div>
+          </div>
+          <div class="profile-dropup">
+            <ul>
+              <li class="dropup-item">
+                <i class="bx bxs-user"></i>
+                <span>My Profile</span>
+              </li>
+              <li class="dropup-item">
+                <i class="bx bxs-cog"></i>
+                <span>Settings</span>
+              </li>
+              <li class="dropup-item">
+                <i class="bx bxs-help-circle"></i>
+                <span>Help</span>
+              </li>
+              <li class="dropup-item">
+                <i class="bx bxs-log-out"></i>
+                <span>Logout</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- page content -->
+    <section class="home-section">
+      <!-- gauge -->
+      <section class="gauge-section">
+        <div class="container">
+          <div class="gauge-container">
+            <svg
+              class="gauge"
+              viewBox="0 0 150 150"
+              preserveAscpectRatio="xMinYMin Meet">
+              <circle class="rail" r="67" cx="75" cy="75" />
+              <circle
+                class="progress"
+                r="67"
+                data-target="84"
+                cx="75"
+                cy="75" />
+            </svg>
+            <span class="center percentage">
+              <span class="value">0</span>
+              <span class="percentSymbol">%</span>
+            </span>
+          </div>
+          <h3 class="label">Classroom</h3>
+        </div>
+
+        <div class="container">
+          <div class="gauge-container">
+            <svg
+              class="gauge"
+              viewBox="0 0 150 150"
+              preserveAscpectRatio="xMinYMin Meet">
+              <circle class="rail" r="67" cx="75" cy="75" />
+              <circle
+                class="progress"
+                r="67"
+                data-target="60"
+                cx="75"
+                cy="75" />
+            </svg>
+            <span class="center percentage">
+              <span class="value">0</span>
+              <span class="percentSymbol">%</span>
+            </span>
+          </div>
+          <h3 class="label">Library</h3>
+        </div>
+
+        <div class="container">
+          <div class="gauge-container">
+            <svg
+              class="gauge"
+              viewBox="0 0 150 150"
+              preserveAscpectRatio="xMinYMin Meet">
+              <circle class="rail" r="67" cx="75" cy="75" />
+              <circle
+                class="progress"
+                r="67"
+                data-target="40"
+                cx="75"
+                cy="75" />
+            </svg>
+            <span class="center percentage">
+              <span class="value">0</span>
+              <span class="percentSymbol">%</span>
+            </span>
+          </div>
+          <h3 class="label">Parking</h3>
+        </div>
+      </section>
+
+      <!-- cards -->
+      <section class="hero-section">
+        <div class="card-grid">
+          <!-- first card -->
+          <a class="card" href="#">
+            <div
+              class="card__background"
+              style="background-image: url(/public/images/citu.jpeg)"></div>
+            <div class="card__content">
+              <h3 class="card__heading">Classrooms</h3>
+            </div>
+          </a>
+          <!-- second card -->
+          <a class="card" href="#">
+            <div
+              class="card__background"
+              style="background-image: url(/public/images/parking.jpg)"></div>
+            <div class="card__content">
+              <h3 class="card__heading">Parking</h3>
+            </div>
+          </a>
+          <!-- third card -->
+          <a class="card" href="#">
+            <div
+              class="card__background"
+              style="background-image: url(/public/images/library.jpg)"></div>
+            <div class="card__content">
+              <h3 class="card__heading">Library</h3>
+            </div>
+          </a>
+        </div>
+      </section>
+    </section>
+
+    <!-- javascript -->
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>
