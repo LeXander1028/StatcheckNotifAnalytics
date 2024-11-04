@@ -2,6 +2,7 @@ package com.jizas.statcheck.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,21 @@ public class NotificationService {
         }
         return null;
     }
+
+    // Update a notification
+    public NotificationEntity updateNotification(int notificationId, Integer userId, String message, AnalyticsEntity analytics) {
+    Optional<NotificationEntity> optionalNotification = notificationRepository.findById(notificationId);
+    if (optionalNotification.isPresent()) {
+        NotificationEntity notification = optionalNotification.get();
+        // Update fields
+        notification.setUserId(userId);
+        notification.setMessage(message);
+        notification.setAnalytics(analytics); // Update the analytics link if provided
+        return notificationRepository.save(notification); // Save and return the updated notification
+    } else {
+        throw new NoSuchElementException("Notification not found");
+    }
+}
 
     // Delete a notification by ID
     public void deleteNotification(int notificationId) {

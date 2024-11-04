@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jizas.statcheck.Entity.AnalyticsEntity;
@@ -48,8 +47,6 @@ public ResponseEntity<AnalyticsEntity> createAnalytics(@RequestBody AnalyticsEnt
     return new ResponseEntity<>(createdAnalytics, HttpStatus.CREATED);
 }
 
-
-
     @GetMapping("/getAll")
     public ResponseEntity<List<AnalyticsEntity>> getAllAnalytics() {
         List<AnalyticsEntity> analyticsList = analyticsService.getAllAnalytics();
@@ -69,16 +66,25 @@ public ResponseEntity<AnalyticsEntity> createAnalytics(@RequestBody AnalyticsEnt
     @PutMapping("/update/{analyticsId}")
     public ResponseEntity<AnalyticsEntity> updateAnalytics(
             @PathVariable int analyticsId,
-            @RequestParam float usageRate,
-            @RequestParam String peakHours) {
-        if (usageRate < 0 || usageRate > 100) {
+            @RequestBody AnalyticsEntity analyticsEntity) {
+        
+        // Validate usage rate
+        if (analyticsEntity.getUsageRate() < 0 || analyticsEntity.getUsageRate() > 100) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        AnalyticsEntity updatedAnalytics = analyticsService.updateAnalytics(analyticsId, usageRate, peakHours);
+        
+        // Perform the update operation
+        AnalyticsEntity updatedAnalytics = analyticsService.updateAnalytics(
+                analyticsId,
+                analyticsEntity.getUsageRate(),
+                analyticsEntity.getPeakHours()
+        );
         return updatedAnalytics != null ?
                 new ResponseEntity<>(updatedAnalytics, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+    
+    
 
     @DeleteMapping("/delete/{analyticsId}")
     public ResponseEntity<String> deleteAnalytics(@PathVariable int analyticsId) {

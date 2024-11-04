@@ -97,6 +97,35 @@ public class NotificationController {
         }
     }
 
+    // Update a notification
+    @PutMapping("/update/{notificationId}")
+public ResponseEntity<NotificationEntity> updateNotification(@PathVariable int notificationId, 
+                                                              @RequestBody NotificationEntity updatedNotification) {
+    try {
+        // Check if an AnalyticsEntity exists if analyticsId is provided
+        AnalyticsEntity analytics = null;
+        if (updatedNotification.getAnalytics() != null) {
+            int analyticsId = updatedNotification.getAnalytics().getAnalyticsId();
+            Optional<AnalyticsEntity> optionalAnalytics = analyticsService.getAnalyticsById(analyticsId);
+            if (optionalAnalytics.isPresent()) {
+                analytics = optionalAnalytics.get();
+            } else {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Invalid Analytics ID
+            }
+        }
+
+        // Update the notification
+        NotificationEntity notification = notificationService.updateNotification(notificationId,
+                updatedNotification.getUserId(),
+                updatedNotification.getMessage(),
+                analytics); // Include analytics in the service call
+
+        return new ResponseEntity<>(notification, HttpStatus.OK);
+    } catch (NoSuchElementException ex) {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Notification not found
+    }
+}
+
     // Delete a notification by ID
     @DeleteMapping("/delete/{notificationId}")
     public ResponseEntity<String> deleteNotification(@PathVariable int notificationId) {
